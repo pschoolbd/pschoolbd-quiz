@@ -10,14 +10,9 @@
 
 <title>মেলান্দহ উপজেলা - টনকী ক্লাস্টার</title>
 
-<!-- Excel Library -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
-
-/* =========================
-   BASIC
-========================= */
 
 *{
   box-sizing:border-box;
@@ -40,11 +35,6 @@ body{
   box-shadow:0 6px 22px #0001;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 .head{
   text-align:center;
 }
@@ -65,11 +55,6 @@ body{
   margin:8px 0;
   font-size:19px;
 }
-
-
-/* =========================
-   FORM
-========================= */
 
 label{
   display:block;
@@ -99,11 +84,6 @@ input:focus{
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
-
-
-/* =========================
-   BUTTON
-========================= */
 
 button{
   border:0;
@@ -157,11 +137,6 @@ button:disabled{
   background:#b42318;
 }
 
-
-/* =========================
-   PHOTO
-========================= */
-
 .photo-box{
   border:2px dashed #9da8b2;
   padding:12px;
@@ -184,11 +159,6 @@ button:disabled{
   object-fit:cover;
   border:1px solid #ccc;
 }
-
-
-/* =========================
-   TABLE
-========================= */
 
 .table-wrap{
   overflow:auto;
@@ -227,11 +197,6 @@ tbody tr:hover{
   background:#eef7f2;
 }
 
-
-/* =========================
-   PHOTO BUTTON
-========================= */
-
 .photo-btn{
   display:inline-block;
   background:#1769aa;
@@ -241,15 +206,6 @@ tbody tr:hover{
   text-decoration:none;
   font-weight:bold;
 }
-
-.photo-btn:hover{
-  background:#0e578d;
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
 
 .loading{
   text-align:center;
@@ -281,11 +237,6 @@ tbody tr:hover{
 .hidden{
   display:none;
 }
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:600px){
 
@@ -319,11 +270,6 @@ tbody tr:hover{
   }
 
 }
-
-
-/* =========================
-   PRINT / PDF
-========================= */
 
 @media print{
 
@@ -363,12 +309,11 @@ tbody tr:hover{
 
 </head>
 
-
 <body>
 
 
 <!-- =====================================================
-     FORM PAGE
+     FORM
 ===================================================== -->
 
 <div class="card" id="formPage">
@@ -387,8 +332,6 @@ tbody tr:hover{
 
   </div>
 
-
-  <!-- SCHOOL -->
 
   <label>
     বিদ্যালয়ের নাম নির্বাচন করুন
@@ -432,8 +375,6 @@ tbody tr:hover{
 
   </select>
 
-
-  <!-- NUMBER INPUTS -->
 
   <div class="grid">
 
@@ -500,8 +441,6 @@ tbody tr:hover{
   </div>
 
 
-  <!-- PHOTO -->
-
   <div class="photo-box">
 
     <label>
@@ -515,25 +454,21 @@ tbody tr:hover{
       capture="environment"
     >
 
-    <img id="photoPreview" alt="ছবির Preview">
+    <img
+      id="photoPreview"
+      alt="ছবির Preview"
+    >
 
   </div>
 
-
-  <!-- SUCCESS -->
 
   <div id="successMsg" class="success">
     ✓ তথ্য সফলভাবে সংরক্ষণ হয়েছে।
   </div>
 
 
-  <!-- ERROR -->
+  <div id="errorMsg" class="error"></div>
 
-  <div id="errorMsg" class="error">
-  </div>
-
-
-  <!-- BUTTONS -->
 
   <button
     class="submit"
@@ -556,7 +491,7 @@ tbody tr:hover{
 
 
 <!-- =====================================================
-     RESULT PAGE
+     RESULT
 ===================================================== -->
 
 <div class="card hidden" id="resultPage">
@@ -575,8 +510,6 @@ tbody tr:hover{
 
   </div>
 
-
-  <!-- ACTION BUTTONS -->
 
   <div class="actions">
 
@@ -604,8 +537,6 @@ tbody tr:hover{
   </div>
 
 
-  <!-- TABLE -->
-
   <div class="table-wrap">
 
     <table id="tbl">
@@ -615,35 +546,20 @@ tbody tr:hover{
         <tr>
 
           <th>ক্রমিক নং</th>
-
           <th>বিদ্যালয়ের নাম</th>
-
           <th>সময়</th>
-
           <th>অনুমোদিত পদ</th>
-
           <th>কর্মরত পদ</th>
-
           <th>সকাল ৯টা উপস্থিত</th>
-
           <th>সকাল ৯টা অনুপস্থিত</th>
-
           <th>নৈমিত্তিক ছুটি</th>
-
           <th>মাতৃত্ব ছুটি</th>
-
           <th>চিকিৎসা ছুটি</th>
-
           <th>বৈদেশিক ছুটি</th>
-
           <th>হজ্জের ছুটি</th>
-
           <th>সংযুক্তিতে/ডেপুটেশন</th>
-
           <th>বিটিপিটি প্রশিক্ষণ</th>
-
           <th>দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত</th>
-
           <th>ছবি</th>
 
         </tr>
@@ -663,7 +579,7 @@ tbody tr:hover{
 <script>
 
 /* =====================================================
-   GOOGLE APPS SCRIPT WEB APP URL
+   BACKEND URL
 ===================================================== */
 
 const BACKEND_URL =
@@ -735,20 +651,18 @@ const H = [
 ];
 
 
-/* =====================================================
-   CACHE
-===================================================== */
-
 let cache = null;
 
 
 /* =====================================================
-   BANGLADESH DATE & TIME
+   BANGLADESH DATE
 ===================================================== */
 
 function getDateTimeBD(){
 
-  const now = new Date();
+  const now =
+    new Date();
+
 
   const parts =
     new Intl.DateTimeFormat(
@@ -763,18 +677,26 @@ function getDateTimeBD(){
         second:"2-digit",
         hour12:false
       }
-    ).formatToParts(now);
+    ).formatToParts(
+      now
+    );
 
-  const get = name => {
 
-    const item =
-      parts.find(
-        x => x.type === name
-      );
+  const get =
+    name => {
 
-    return item ? item.value : "";
+      const item =
+        parts.find(
+          x =>
+            x.type === name
+        );
 
-  };
+      return item
+        ? item.value
+        : "";
+
+    };
+
 
   return {
 
@@ -799,7 +721,8 @@ function getDateTimeBD(){
 
 function iso(){
 
-  return getDateTimeBD().date;
+  return getDateTimeBD()
+    .date;
 
 }
 
@@ -810,12 +733,19 @@ function bd(v){
     return "";
   }
 
-  const a =
-    v.split("-");
 
-  if(a.length !== 3){
+  const a =
+    String(v).split("-");
+
+
+  if(
+    a.length !== 3
+  ){
+
     return v;
+
   }
+
 
   return (
     a[2] +
@@ -829,28 +759,34 @@ function bd(v){
 
 
 /* =====================================================
-   DATE DISPLAY
+   DISPLAY DATE
 ===================================================== */
 
 function dates(){
 
-  const d = iso();
+  const d =
+    iso();
+
 
   document
     .getElementById("fd")
-    .textContent = bd(d);
+    .textContent =
+    bd(d);
+
 
   document
     .getElementById("rd")
-    .textContent = bd(d);
+    .textContent =
+    bd(d);
 
 }
+
 
 dates();
 
 
 /* =====================================================
-   TWO DIGIT NUMBER
+   TWO DIGIT
 ===================================================== */
 
 function twoDigit(v){
@@ -865,8 +801,13 @@ function twoDigit(v){
 
   }
 
+
   const n =
-    parseInt(v,10);
+    parseInt(
+      v,
+      10
+    );
+
 
   if(
     isNaN(n)
@@ -876,8 +817,73 @@ function twoDigit(v){
 
   }
 
+
   return String(n)
-    .padStart(2,"0");
+    .padStart(
+      2,
+      "0"
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT TIME
+===================================================== */
+
+function formatTime(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+
+    return "";
+
+  }
+
+
+  const text =
+    String(value)
+      .trim();
+
+
+  const match =
+    text.match(
+      /(\d{1,2}):(\d{2})(?::(\d{2}))?/
+    );
+
+
+  if(match){
+
+    return (
+
+      match[1]
+        .padStart(
+          2,
+          "0"
+        )
+
+      + ":" +
+
+      match[2]
+
+      + ":" +
+
+      (
+        match[3] || "00"
+      ).padStart(
+        2,
+        "0"
+      )
+
+    );
+
+  }
+
+
+  return text;
 
 }
 
@@ -895,24 +901,31 @@ document
       const file =
         this.files[0];
 
+
       const img =
         document.getElementById(
           "photoPreview"
         );
+
 
       if(!file){
 
         img.style.display =
           "none";
 
-        img.src = "";
+        img.src =
+          "";
 
         return;
 
       }
 
+
       img.src =
-        URL.createObjectURL(file);
+        URL.createObjectURL(
+          file
+        );
+
 
       img.style.display =
         "block";
@@ -922,24 +935,31 @@ document
 
 
 /* =====================================================
-   FILE TO BASE64
+   FILE BASE64
 ===================================================== */
 
 function fileToBase64(file){
 
   return new Promise(
-    (resolve,reject) => {
+    (
+      resolve,
+      reject
+    ) => {
 
       const reader =
         new FileReader();
 
+
       reader.onload =
-        () => resolve(
-          reader.result
-        );
+        () =>
+          resolve(
+            reader.result
+          );
+
 
       reader.onerror =
         reject;
+
 
       reader.readAsDataURL(
         file
@@ -952,18 +972,22 @@ function fileToBase64(file){
 
 
 /* =====================================================
-   SHOW ERROR
+   ERROR
 ===================================================== */
 
-function showError(message){
+function showError(
+  message
+){
 
   const box =
     document.getElementById(
       "errorMsg"
     );
 
+
   box.textContent =
     message;
+
 
   box.style.display =
     "block";
@@ -984,7 +1008,7 @@ function hideError(){
 
 
 /* =====================================================
-   LOAD DATA FROM GOOGLE SHEET
+   LOAD DATA
 ===================================================== */
 
 async function data(){
@@ -994,6 +1018,7 @@ async function data(){
     return cache;
 
   }
+
 
   const res =
     await fetch(
@@ -1019,19 +1044,22 @@ async function data(){
 
   let json;
 
+
   try{
 
     json =
-      JSON.parse(text);
+      JSON.parse(
+        text
+      );
 
   }
 
   catch(e){
 
     console.log(
-      "Backend response:",
       text
     );
+
 
     throw new Error(
       "Backend থেকে বৈধ JSON পাওয়া যায়নি।"
@@ -1042,11 +1070,14 @@ async function data(){
 
   if(
     json.success &&
-    Array.isArray(json.data)
+    Array.isArray(
+      json.data
+    )
   ){
 
     cache =
       json.data;
+
 
     return cache;
 
@@ -1062,18 +1093,21 @@ async function data(){
 
 
 /* =====================================================
-   SAVE ONE SCHOOL
+   SAVE ONE
 ===================================================== */
 
 async function saveOne(n){
 
   const file =
     document
-      .getElementById("photo")
+      .getElementById(
+        "photo"
+      )
       .files[0];
 
 
-  let photo = null;
+  let photo =
+    null;
 
 
   if(file){
@@ -1096,6 +1130,16 @@ async function saveOne(n){
   }
 
 
+  /*
+    Frontend থেকেও submit time পাঠানো হচ্ছে।
+    তবে Backend-এর server time-ই final time হবে।
+  */
+
+  const submitTime =
+    getDateTimeBD()
+      .time;
+
+
   const payload = {
 
     date:
@@ -1106,6 +1150,9 @@ async function saveOne(n){
 
     school:
       S[n - 1],
+
+    time:
+      submitTime,
 
     approved:
       twoDigit(
@@ -1233,16 +1280,18 @@ async function saveOne(n){
   try{
 
     json =
-      JSON.parse(text);
+      JSON.parse(
+        text
+      );
 
   }
 
   catch(e){
 
     console.log(
-      "Backend response:",
       text
     );
+
 
     throw new Error(
       "Backend থেকে বৈধ JSON পাওয়া যায়নি।"
@@ -1268,7 +1317,9 @@ async function submitData(){
   const n =
     Number(
       document
-        .getElementById("school")
+        .getElementById(
+          "school"
+        )
         .value
     );
 
@@ -1293,6 +1344,7 @@ async function submitData(){
   btn.disabled =
     true;
 
+
   btn.textContent =
     "সংরক্ষণ হচ্ছে...";
 
@@ -1315,12 +1367,9 @@ async function submitData(){
     }
 
 
-    /* Clear cache */
+    cache =
+      null;
 
-    cache = null;
-
-
-    /* Success message */
 
     document
       .getElementById(
@@ -1331,25 +1380,26 @@ async function submitData(){
 
 
     alert(
-      "তথ্য, সময় ও ছবি সফলভাবে Google Sheet-এ সংরক্ষণ হয়েছে।"
+      "তথ্য সফলভাবে সংরক্ষণ হয়েছে।"
     );
 
 
-    /* Show result */
-
     await showResults();
-
 
   }
 
   catch(e){
 
-    console.error(e);
+    console.error(
+      e
+    );
+
 
     showError(
       "তথ্য জমা হয়নি: " +
       e.message
     );
+
 
     alert(
       "তথ্য জমা হয়নি।\n\n" +
@@ -1358,11 +1408,11 @@ async function submitData(){
 
   }
 
-
   finally{
 
     btn.disabled =
       false;
+
 
     btn.textContent =
       "✓ Submit";
@@ -1387,9 +1437,9 @@ async function render(){
   tbody.innerHTML =
     '<tr>' +
     '<td colspan="16" class="loading">' +
-    "তথ্য লোড হচ্ছে..." +
-    "</td>" +
-    "</tr>";
+    'তথ্য লোড হচ্ছে...' +
+    '</td>' +
+    '</tr>';
 
 
   try{
@@ -1407,9 +1457,10 @@ async function render(){
       tbody.innerHTML =
         '<tr>' +
         '<td colspan="16" class="loading">' +
-        "আজকের কোনো তথ্য পাওয়া যায়নি।" +
-        "</td>" +
-        "</tr>";
+        'আজকের কোনো তথ্য পাওয়া যায়নি।' +
+        '</td>' +
+        '</tr>';
+
 
       return;
 
@@ -1425,7 +1476,8 @@ async function render(){
           );
 
 
-        let html = "";
+        let html =
+          "";
 
 
         html +=
@@ -1444,10 +1496,16 @@ async function render(){
           "</td>";
 
 
+        // =====================================
+        // TIME FIX
+        // =====================================
+
         html +=
           "<td>" +
           escapeHtml(
-            r.time ?? ""
+            formatTime(
+              r.time
+            )
           ) +
           "</td>";
 
@@ -1519,9 +1577,10 @@ async function render(){
     tbody.innerHTML =
       '<tr>' +
       '<td colspan="16">' +
-      "তথ্য লোড করা যায়নি।" +
-      "</td>" +
-      "</tr>";
+      'তথ্য লোড করা যায়নি।' +
+      '</td>' +
+      '</tr>';
+
 
     throw e;
 
@@ -1598,7 +1657,9 @@ async function showResults(){
         "formPage"
       )
       .classList
-      .add("hidden");
+      .add(
+        "hidden"
+      );
 
 
     document
@@ -1606,8 +1667,9 @@ async function showResults(){
         "resultPage"
       )
       .classList
-      .remove("hidden");
-
+      .remove(
+        "hidden"
+      );
 
   }
 
@@ -1636,7 +1698,9 @@ function showForm(){
       "resultPage"
     )
     .classList
-    .add("hidden");
+    .add(
+      "hidden"
+    );
 
 
   document
@@ -1644,13 +1708,15 @@ function showForm(){
       "formPage"
     )
     .classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
 
 }
 
 
 /* =====================================================
-   EXCEL DOWNLOAD
+   EXCEL
 ===================================================== */
 
 async function downloadExcel(){
@@ -1666,7 +1732,7 @@ async function downloadExcel(){
     ){
 
       alert(
-        "Excel library লোড হয়নি। Internet connection পরীক্ষা করুন।"
+        "Excel library লোড হয়নি।"
       );
 
       return;
@@ -1676,8 +1742,6 @@ async function downloadExcel(){
 
     const rows = [];
 
-
-    /* Title */
 
     rows.push([
       "মেলান্দহ উপজেলা"
@@ -1699,14 +1763,8 @@ async function downloadExcel(){
     rows.push([]);
 
 
-    /* Header */
+    rows.push(H);
 
-    rows.push(
-      H
-    );
-
-
-    /* Data */
 
     d.forEach(
       r => {
@@ -1717,30 +1775,21 @@ async function downloadExcel(){
 
           r.school || "",
 
-          r.time || "",
+          formatTime(
+            r.time
+          ),
 
           r.v1 || "00",
-
           r.v2 || "00",
-
           r.v3 || "00",
-
           r.v4 || "00",
-
           r.v5 || "00",
-
           r.v6 || "00",
-
           r.v7 || "00",
-
           r.v8 || "00",
-
           r.v9 || "00",
-
           r.v10 || "00",
-
           r.v11 || "00",
-
           r.v12 || "00",
 
           r.photo
@@ -1753,15 +1802,11 @@ async function downloadExcel(){
     );
 
 
-    /* Create worksheet */
-
     const ws =
       XLSX.utils.aoa_to_sheet(
         rows
       );
 
-
-    /* Column width */
 
     ws["!cols"] = [
 
@@ -1785,8 +1830,6 @@ async function downloadExcel(){
     ];
 
 
-    /* Workbook */
-
     const wb =
       XLSX.utils.book_new();
 
@@ -1797,8 +1840,6 @@ async function downloadExcel(){
       "বিদ্যালয় তথ্য"
     );
 
-
-    /* File name */
 
     const filename =
       "টনকী_ক্লাস্টার_" +
@@ -1811,12 +1852,14 @@ async function downloadExcel(){
       filename
     );
 
-
   }
 
   catch(e){
 
-    console.error(e);
+    console.error(
+      e
+    );
+
 
     alert(
       "Excel তৈরি করা যায়নি।\n\n" +
@@ -1829,7 +1872,7 @@ async function downloadExcel(){
 
 
 /* =====================================================
-   PDF DOWNLOAD
+   PDF
 ===================================================== */
 
 async function downloadPDF(){
@@ -1837,13 +1880,6 @@ async function downloadPDF(){
   try{
 
     await render();
-
-
-    /*
-      Browser print dialog open হবে।
-      এখান থেকে:
-      Save as PDF নির্বাচন করুন।
-    */
 
     window.print();
 
@@ -1866,7 +1902,9 @@ async function downloadPDF(){
 ===================================================== */
 
 document
-  .getElementById("school")
+  .getElementById(
+    "school"
+  )
   .addEventListener(
     "change",
     function(){
@@ -1878,6 +1916,7 @@ document
         .style.display =
         "none";
 
+
       hideError();
 
     }
@@ -1885,7 +1924,7 @@ document
 
 
 /* =====================================================
-   PREVENT ENTER SUBMIT
+   ENTER PREVENT
 ===================================================== */
 
 document
@@ -1905,9 +1944,7 @@ document
     }
   );
 
-
 </script>
 
 </body>
-
 </html>
