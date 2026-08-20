@@ -1,0 +1,108 @@
+<!doctype html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>মেলান্দহ উপজেলা - টনকী ক্লাস্টার</title>
+<style>
+body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#eef3f8;margin:0;padding:14px;color:#17212b}.card{max-width:1100px;margin:auto;background:#fff;border-radius:18px;padding:18px;box-shadow:0 6px 22px #0001}.head{text-align:center}.head h1{color:#0b5d3b;margin:2px}.head h2{color:#1769aa;margin:3px}label{display:block;font-weight:bold;margin:10px 0 5px}select,input{width:100%;padding:11px;border:1px solid #ccd5df;border-radius:9px;font-size:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}button{border:0;border-radius:10px;padding:13px;margin-top:14px;font-weight:bold;font-size:16px;cursor:pointer}.submit{width:100%;background:#087f5b;color:white}.view{width:100%;background:#1769aa;color:white}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1;min-width:150px;background:#087f5b;color:white}.actions .clear{background:#b42318}.actions .back{background:#555}.hidden{display:none}.table-wrap{overflow:auto;margin-top:15px}table{border-collapse:collapse;min-width:1500px;width:100%;font-size:13px}th,td{border:1px solid #9da8b2;padding:7px;text-align:center;white-space:nowrap}th{background:#e5f1eb}td:nth-child(2),th:nth-child(2){text-align:left}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="card" id="formPage"><div class="head"><h1>মেলান্দহ উপজেলা</h1><h2>টনকী ক্লাস্টার</h2><h3>বিদ্যালয় তথ্য সংগ্রহ</h3><div>তারিখ - <b id="fd"></b></div></div>
+<label>বিদ্যালয়ের নাম নির্বাচন করুন</label><select id="school"><option value="">-- বিদ্যালয় নির্বাচন করুন --</option><option value="1">1. হাতিজা স.প্রা.বি.</option>
+<option value="2">2. হামলা স.প্রা.বি.</option>
+<option value="3">3. আমবাড়িয়া স.প্রা.বি.</option>
+<option value="4">4. রোকনাই স.প্রা.বি.</option>
+<option value="5">5. সুলতানখালি স.প্রা.বি.</option>
+<option value="6">6. উ.কলাবাধা স.প্রা.বি.</option>
+<option value="7">7. দ.কলাবাধা স.প্রা.বি.</option>
+<option value="8">8. টনকী স.প্রা.বি.</option>
+<option value="9">9. সিতানী স.প্রা.বি.</option>
+<option value="10">10. কাংগালকুর্শা স.প্রা.বি.</option>
+<option value="11">11. তারাকান্দি স.প্রা.বি.</option>
+<option value="12">12. ভালুকা স.প্রা.বি.</option>
+<option value="13">13. শ্যামপুর স.প্রা.বি.</option>
+<option value="14">14. হাজী আ.রশিদ স.প্রা.বি.</option>
+<option value="15">15. আমডাঙ্গা স.প্রা.বি.</option>
+<option value="16">16. কাজাইকাটা স.প্রা.বি.</option>
+<option value="17">17. বালুরচর স.প্রা.বি.</option>
+<option value="18">18. ২নং চর স.প্রা.বি.</option>
+<option value="19">19. তেঘরিয়া স.প্রা.বি.</option>
+<option value="20">20. চর-বসন্ত স.প্রা.বি.</option>
+<option value="21">21. সিড়ি-ঘাট স.প্রা.বি.</option>
+<option value="22">22. চিনিতোলা স.প্রা.বি.</option>
+<option value="23">23. বল্লভপুর স.প্রা.বি.</option>
+<option value="24">24. পচাবহলা স.প্রা.বি.</option>
+<option value="25">25. খুদিয়ার কান্দা স.প্রা.বি.</option>
+<option value="26">26. টুপকার চর স.প্রা.বি.</option>
+<option value="27">27. সাদিপাটি স.প্রা.বি.</option>
+<option value="28">28. পূর্ব সাদিপাটি স.প্রা.বি.</option>
+<option value="29">29. বালুরচর দ. স.প্রা.বি.</option></select>
+<div class="grid"><div><label>1। অনুমোদিত পদ সংখ্যা</label><input id="a1" type="number" value="06"></div><div><label>2। কর্মরত পদ সংখ্যা</label><input id="a2" type="number" value="06"></div><div><label>3। সকাল ৯টা উপস্থিত সংখ্যা</label><input id="a3" type="number" value="05"></div><div><label>4। সকাল ৯টা অনুপস্থিত সংখ্যা</label><input id="a4" type="number" value="00"></div><div><label>5। নৈমিত্তিক ছুটি সংখ্যা</label><input id="a5" type="number" value="00"></div><div><label>6। মাতৃত্ব ছুটি সংখ্যা</label><input id="a6" type="number" value="00"></div><div><label>7। চিকিৎসা ছুটি সংখ্যা</label><input id="a7" type="number" value="00"></div><div><label>8। বৈদেশিক ছুটি সংখ্যা</label><input id="a8" type="number" value="00"></div><div><label>9। হজ্জের ছুটি সংখ্যা</label><input id="a9" type="number" value="00"></div><div><label>10। শিক্ষক সংযুক্তিতে/ডেপুটেশন সংখ্যা</label><input id="a10" type="number" value="01"></div><div><label>11। বিটিপিটি প্রশিক্ষণের সংখ্যা</label><input id="a11" type="number" value="00"></div><div><label>12। দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত সংখ্যা</label><input id="a12" type="number" value="00"></div></div><button class="submit" onclick="submitData()">✓ Submit</button><button class="view" onclick="showResults()">📊 সব তথ্য দেখুন</button></div>
+<div class="card hidden" id="resultPage"><div class="head"><h1>মেলান্দহ উপজেলা</h1><h2>টনকী ক্লাস্টার</h2><h3>বিদ্যালয়সমূহের তথ্য</h3><div>তারিখ - <b id="rd"></b></div></div>
+<div class="actions"><button class="back" onclick="showForm()">← নতুন তথ্য</button><button onclick="downloadExcel()">⬇ Microsoft Excel (.xlsx)</button><button onclick="downloadPDF()">⬇ PDF Download</button></div>
+<div class="table-wrap"><table id="tbl"><thead><tr><th>ক্রমিক নং</th><th>বিদ্যালয়ের নাম</th><th>অনুমোদিত পদ</th><th>কর্মরত পদ</th><th>সকাল ৯টা উপস্থিত</th><th>সকাল ৯টা অনুপস্থিত</th><th>নৈমিত্তিক ছুটি</th><th>মাতৃত্ব ছুটি</th><th>চিকিৎসা ছুটি</th><th>বৈদেশিক ছুটি</th><th>হজ্জের ছুটি</th><th>সংযুক্তিতে/ডেপুটেশন</th><th>বিটিপিটি প্রশিক্ষণ</th><th>দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত</th></tr></thead><tbody></tbody></table></div></div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script>
+const S=["হাতিজা স.প্রা.বি.", "হামলা স.প্রা.বি.", "আমবাড়িয়া স.প্রা.বি.", "রোকনাই স.প্রা.বি.", "সুলতানখালি স.প্রা.বি.", "উ.কলাবাধা স.প্রা.বি.", "দ.কলাবাধা স.প্রা.বি.", "টনকী স.প্রা.বি.", "সিতানী স.প্রা.বি.", "কাংগালকুর্শা স.প্রা.বি.", "তারাকান্দি স.প্রা.বি.", "ভালুকা স.প্রা.বি.", "শ্যামপুর স.প্রা.বি.", "হাজী আ.রশিদ স.প্রা.বি.", "আমডাঙ্গা স.প্রা.বি.", "কাজাইকাটা স.প্রা.বি.", "বালুরচর স.প্রা.বি.", "২নং চর স.প্রা.বি.", "তেঘরিয়া স.প্রা.বি.", "চর-বসন্ত স.প্রা.বি.", "সিড়ি-ঘাট স.প্রা.বি.", "চিনিতোলা স.প্রা.বি.", "বল্লভপুর স.প্রা.বি.", "পচাবহলা স.প্রা.বি.", "খুদিয়ার কান্দা স.প্রা.বি.", "টুপকার চর স.প্রা.বি.", "সাদিপাটি স.প্রা.বি.", "পূর্ব সাদিপাটি স.প্রা.বি.", "বালুরচর দ. স.প্রা.বি."], H=["ক্রমিক নং", "বিদ্যালয়ের নাম", "অনুমোদিত পদ", "কর্মরত পদ", "সকাল ৯টা উপস্থিত", "সকাল ৯টা অনুপস্থিত", "নৈমিত্তিক ছুটি", "মাতৃত্ব ছুটি", "চিকিৎসা ছুটি", "বৈদেশিক ছুটি", "হজ্জের ছুটি", "সংযুক্তিতে/ডেপুটেশন", "বিটিপিটি প্রশিক্ষণ", "দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত"], ids=["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12"];
+function iso(){let d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function bd(v){let a=v.split("-");return a[2]+"-"+a[1]+"-"+a[0]}
+function dates(){document.getElementById("fd").textContent=bd(iso());document.getElementById("rd").textContent=bd(iso());}
+const BACKEND_URL="https://script.google.com/macros/s/AKfycbwoxcERHb9zn5COCdUvMhak5aV1F4mK97--rbc0cNBGv3dwngrmwBYBz3tHE1key-Cc/exec";
+let cache=null;
+function key(){return "tonki_"+iso()}
+async function data(){
+  if(cache) return cache;
+  try{
+    const res=await fetch(BACKEND_URL+"?date="+encodeURIComponent(iso()),{
+      cache:"no-store",
+      redirect:"follow"
+    });
+    const text=await res.text();
+    let json;
+    try{json=JSON.parse(text);}
+    catch(e){throw new Error("Backend থেকে বৈধ JSON পাওয়া যায়নি।");}
+    if(json.success && Array.isArray(json.data)){ cache=json.data; return cache; }
+    throw new Error(json.message||"তথ্য লোড হয়নি");
+  }catch(e){
+    console.error(e);
+    throw new Error("Google Sheet থেকে তথ্য আনা যাচ্ছে না। Backend deployment আবার পরীক্ষা করুন।");
+  }
+}
+async function saveOne(n){
+  const payload={date:iso(),serial:n,school:S[n-1],
+    approved:document.getElementById("a1").value||"00",working:document.getElementById("a2").value||"00",
+    present:document.getElementById("a3").value||"00",absent:document.getElementById("a4").value||"00",
+    casual:document.getElementById("a5").value||"00",maternity:document.getElementById("a6").value||"00",
+    medical:document.getElementById("a7").value||"00",foreign:document.getElementById("a8").value||"00",
+    hajj:document.getElementById("a9").value||"00",deputation:document.getElementById("a10").value||"00",
+    btpt:document.getElementById("a11").value||"00",absentLong:document.getElementById("a12").value||"00"};
+  const res=await fetch(BACKEND_URL,{
+    method:"POST",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify(payload),
+    redirect:"follow"
+  });
+  const text=await res.text();
+  let json;
+  try{json=JSON.parse(text);}
+  catch(e){throw new Error("Backend থেকে বৈধ JSON পাওয়া যায়নি। Apps Script deployment/URL পরীক্ষা করুন।");}
+  return json;
+}
+async function submitData(){
+  let n=+school.value;if(!n)return alert("বিদ্যালয়ের নাম নির্বাচন করুন।");
+  const btn=document.querySelector(".submit");btn.disabled=true;btn.textContent="সংরক্ষণ হচ্ছে...";
+  try{const result=await saveOne(n);if(!result.success)throw new Error(result.message||"সংরক্ষণ করা যায়নি।");cache=null;alert(n+" নম্বর বিদ্যালয়ের তথ্য Google Sheet-এ জমা হয়েছে।");await showResults();}
+  catch(e){alert("তথ্য জমা হয়নি।\n"+e.message);}
+  finally{btn.disabled=false;btn.textContent="✓ Submit";}
+}
+async function render(){
+  let b=document.querySelector("#tbl tbody");
+  b.innerHTML='<tr><td colspan="14">তথ্য লোড হচ্ছে...</td></tr>';
+  try{
+    const d=await data(); b.innerHTML="";
+    d.forEach(r=>{let tr=document.createElement("tr");tr.innerHTML="<td>"+r.no+"</td><td>"+r.school+"</td>"+ids.map((_,i)=>"<td>"+(r["v"+(i+1)]??"")+"</td>").join("");b.appendChild(tr);});
+  }catch(e){b.innerHTML='<tr><td colspan="14">তথ্য লোড করা যায়নি।</td></tr>';throw e;}
+}
+async function showResults(){dates();try{await render();formPage.classList.add("hidden");resultPage.classList.remove("hidden");}catch(e){alert(e.message)}}
+function showForm(){dates();resultPage.classList.add("hidden");formPage.classList.remove("hidden")}
+async function downloadExcel(){
+  try{const d=await data();if(!window.XLSX)return alert("Excel library লোড হয়নি।");let rows=[["মেলান্দহ উপজেলা"],["টনকী ক্লাস্টার"],["তারিখ - "+bd(iso())],[],H,...d.map(r=>[r.no,r.school,...ids.map((_,i)=>r["v"+(i+1)]??"")])];let ws=XLSX.utils.aoa_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"বিদ্যালয় তথ্য");XLSX.writeFile(wb,"টনকী_ক্লাস্টার_"+iso()+".xlsx");}catch(e){alert(e.message)}}
+async function downloadPDF(){
+  try{const d=await data();let rows=d.map(r=>"<tr><td>"+r.no+"</td><td>"+r.school+"</td>"+ids.map((_,i)=>"<td>"+(r["v"+(i+1)]??"")+"</td>").join("")+"</tr>").join("");let w=window.open("","_blank");if(!w){alert("Popup অনুমতি দিন।");return;}w.document.write('<!doctype html><html lang="bn"><head><meta charset="UTF-8"><style>@page{size:A3 landscape;margin:7mm}body{font-family:Arial,"Noto Sans Bengali",sans-serif;margin:0}h1,h2,h3,p{text-align:center;margin:2px 0}h1{font-size:23px}h2{font-size:18px}h3{font-size:15px}p{font-size:12px;margin-bottom:8px}table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:9px}th,td{border:1px solid #444;padding:4px 3px;text-align:center;overflow-wrap:anywhere;white-space:normal;line-height:1.25}th{background:#e5f1eb;font-weight:bold}th:nth-child(1),td:nth-child(1){width:4%}th:nth-child(2),td:nth-child(2){width:14%;text-align:left}th:nth-child(n+3),td:nth-child(n+3){width:6.83%}</style></head><body><h1>মেলান্দহ উপজেলা</h1><h2>টনকী ক্লাস্টার</h2><h3>বিদ্যালয়সমূহের তথ্য</h3><p>তারিখ - '+bd(iso())+'</p><table><thead><tr>'+H.map(x=>"<th>"+x+"</th>").join("")+'</tr></thead><tbody>'+rows+'</tbody></table><script>setTimeout(function(){print()},700)<\/script></body></html>');w.document.close();}catch(e){alert(e.message)}}
+dates();
+</script></body></html>
