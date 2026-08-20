@@ -1,0 +1,1913 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
+<title>মেলান্দহ উপজেলা - টনকী ক্লাস্টার</title>
+
+<!-- Excel Library -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:#eef3f8;
+  margin:0;
+  padding:14px;
+  color:#17212b;
+}
+
+.card{
+  max-width:1100px;
+  margin:auto;
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 6px 22px #0001;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.head{
+  text-align:center;
+}
+
+.head h1{
+  color:#0b5d3b;
+  margin:2px;
+  font-size:28px;
+}
+
+.head h2{
+  color:#1769aa;
+  margin:3px;
+  font-size:23px;
+}
+
+.head h3{
+  margin:8px 0;
+  font-size:19px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+label{
+  display:block;
+  font-weight:bold;
+  margin:10px 0 5px;
+}
+
+select,
+input{
+  width:100%;
+  padding:11px;
+  border:1px solid #ccd5df;
+  border-radius:9px;
+  font-size:16px;
+  background:#fff;
+}
+
+select:focus,
+input:focus{
+  outline:none;
+  border-color:#1769aa;
+  box-shadow:0 0 0 2px #1769aa22;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  margin-top:14px;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.submit{
+  width:100%;
+  background:#087f5b;
+  color:white;
+}
+
+.view{
+  width:100%;
+  background:#1769aa;
+  color:white;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.actions button{
+  flex:1;
+  min-width:150px;
+  background:#087f5b;
+  color:white;
+}
+
+.actions .back{
+  background:#555;
+}
+
+.actions .excel{
+  background:#087f5b;
+}
+
+.actions .pdf{
+  background:#b42318;
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-box{
+  border:2px dashed #9da8b2;
+  padding:12px;
+  border-radius:12px;
+  margin-top:15px;
+  text-align:center;
+  background:#fafcff;
+}
+
+.photo-box label{
+  margin-top:0;
+}
+
+#photoPreview{
+  display:none;
+  max-width:220px;
+  max-height:160px;
+  margin:12px auto 0;
+  border-radius:10px;
+  object-fit:cover;
+  border:1px solid #ccc;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+  overflow:auto;
+  margin-top:15px;
+  border-radius:8px;
+}
+
+table{
+  border-collapse:collapse;
+  min-width:1800px;
+  width:100%;
+  font-size:13px;
+}
+
+th,
+td{
+  border:1px solid #9da8b2;
+  padding:7px;
+  text-align:center;
+  white-space:nowrap;
+}
+
+th{
+  background:#e5f1eb;
+  color:#123;
+  position:sticky;
+  top:0;
+  z-index:1;
+}
+
+tbody tr:nth-child(even){
+  background:#f8fbfd;
+}
+
+tbody tr:hover{
+  background:#eef7f2;
+}
+
+
+/* =========================
+   PHOTO BUTTON
+========================= */
+
+.photo-btn{
+  display:inline-block;
+  background:#1769aa;
+  color:white;
+  padding:6px 10px;
+  border-radius:7px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.photo-btn:hover{
+  background:#0e578d;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.loading{
+  text-align:center;
+  padding:20px;
+}
+
+.success{
+  background:#e8f7ef;
+  color:#087f5b;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+  display:none;
+  text-align:center;
+  font-weight:bold;
+}
+
+.error{
+  background:#fff0f0;
+  color:#b42318;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+  display:none;
+  text-align:center;
+  font-weight:bold;
+}
+
+.hidden{
+  display:none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  body{
+    padding:8px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:13px;
+    border-radius:14px;
+  }
+
+  .head h1{
+    font-size:23px;
+  }
+
+  .head h2{
+    font-size:20px;
+  }
+
+  .head h3{
+    font-size:17px;
+  }
+
+  table{
+    font-size:12px;
+  }
+
+}
+
+
+/* =========================
+   PRINT / PDF
+========================= */
+
+@media print{
+
+  body{
+    background:white;
+    padding:0;
+  }
+
+  .card{
+    box-shadow:none;
+    max-width:none;
+    border-radius:0;
+  }
+
+  .actions{
+    display:none !important;
+  }
+
+  .table-wrap{
+    overflow:visible;
+  }
+
+  table{
+    min-width:0;
+    width:100%;
+    font-size:9px;
+  }
+
+  th,
+  td{
+    padding:4px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     FORM PAGE
+===================================================== -->
+
+<div class="card" id="formPage">
+
+  <div class="head">
+
+    <h1>মেলান্দহ উপজেলা</h1>
+
+    <h2>টনকী ক্লাস্টার</h2>
+
+    <h3>বিদ্যালয় তথ্য সংগ্রহ</h3>
+
+    <div>
+      তারিখ - <b id="fd"></b>
+    </div>
+
+  </div>
+
+
+  <!-- SCHOOL -->
+
+  <label>
+    বিদ্যালয়ের নাম নির্বাচন করুন
+  </label>
+
+  <select id="school">
+
+    <option value="">
+      -- বিদ্যালয় নির্বাচন করুন --
+    </option>
+
+    <option value="1">1. হাতিজা স.প্রা.বি.</option>
+    <option value="2">2. হামলা স.প্রা.বি.</option>
+    <option value="3">3. আমবাড়িয়া স.প্রা.বি.</option>
+    <option value="4">4. রোকনাই স.প্রা.বি.</option>
+    <option value="5">5. সুলতানখালি স.প্রা.বি.</option>
+    <option value="6">6. উ.কলাবাধা স.প্রা.বি.</option>
+    <option value="7">7. দ.কলাবাধা স.প্রা.বি.</option>
+    <option value="8">8. টনকী স.প্রা.বি.</option>
+    <option value="9">9. সিতানী স.প্রা.বি.</option>
+    <option value="10">10. কাংগালকুর্শা স.প্রা.বি.</option>
+    <option value="11">11. তারাকান্দি স.প্রা.বি.</option>
+    <option value="12">12. ভালুকা স.প্রা.বি.</option>
+    <option value="13">13. শ্যামপুর স.প্রা.বি.</option>
+    <option value="14">14. হাজী আ.রশিদ স.প্রা.বি.</option>
+    <option value="15">15. আমডাঙ্গা স.প্রা.বি.</option>
+    <option value="16">16. কাজাইকাটা স.প্রা.বি.</option>
+    <option value="17">17. বালুরচর স.প্রা.বি.</option>
+    <option value="18">18. ২নং চর স.প্রা.বি.</option>
+    <option value="19">19. তেঘরিয়া স.প্রা.বি.</option>
+    <option value="20">20. চর-বসন্ত স.প্রা.বি.</option>
+    <option value="21">21. সিড়ি-ঘাট স.প্রা.বি.</option>
+    <option value="22">22. চিনিতোলা স.প্রা.বি.</option>
+    <option value="23">23. বল্লভপুর স.প্রা.বি.</option>
+    <option value="24">24. পচাবহলা স.প্রা.বি.</option>
+    <option value="25">25. খুদিয়ার কান্দা স.প্রা.বি.</option>
+    <option value="26">26. টুপকার চর স.প্রা.বি.</option>
+    <option value="27">27. সাদিপাটি স.প্রা.বি.</option>
+    <option value="28">28. পূর্ব সাদিপাটি স.প্রা.বি.</option>
+    <option value="29">29. বালুরচর দ. স.প্রা.বি.</option>
+
+  </select>
+
+
+  <!-- NUMBER INPUTS -->
+
+  <div class="grid">
+
+    <div>
+      <label>1। অনুমোদিত পদ সংখ্যা</label>
+      <input id="a1" type="number" min="0" value="6">
+    </div>
+
+    <div>
+      <label>2। কর্মরত পদ সংখ্যা</label>
+      <input id="a2" type="number" min="0" value="6">
+    </div>
+
+    <div>
+      <label>3। সকাল ৯টা উপস্থিত সংখ্যা</label>
+      <input id="a3" type="number" min="0" value="5">
+    </div>
+
+    <div>
+      <label>4। সকাল ৯টা অনুপস্থিত সংখ্যা</label>
+      <input id="a4" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>5। নৈমিত্তিক ছুটি সংখ্যা</label>
+      <input id="a5" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>6। মাতৃত্ব ছুটি সংখ্যা</label>
+      <input id="a6" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>7। চিকিৎসা ছুটি সংখ্যা</label>
+      <input id="a7" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>8। বৈদেশিক ছুটি সংখ্যা</label>
+      <input id="a8" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>9। হজ্জের ছুটি সংখ্যা</label>
+      <input id="a9" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>10। শিক্ষক সংযুক্তিতে/ডেপুটেশন সংখ্যা</label>
+      <input id="a10" type="number" min="0" value="1">
+    </div>
+
+    <div>
+      <label>11। বিটিপিটি প্রশিক্ষণের সংখ্যা</label>
+      <input id="a11" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <label>12। দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত সংখ্যা</label>
+      <input id="a12" type="number" min="0" value="0">
+    </div>
+
+  </div>
+
+
+  <!-- PHOTO -->
+
+  <div class="photo-box">
+
+    <label>
+      📷 বিদ্যালয়ের ছবি
+    </label>
+
+    <input
+      id="photo"
+      type="file"
+      accept="image/*"
+      capture="environment"
+    >
+
+    <img id="photoPreview" alt="ছবির Preview">
+
+  </div>
+
+
+  <!-- SUCCESS -->
+
+  <div id="successMsg" class="success">
+    ✓ তথ্য সফলভাবে সংরক্ষণ হয়েছে।
+  </div>
+
+
+  <!-- ERROR -->
+
+  <div id="errorMsg" class="error">
+  </div>
+
+
+  <!-- BUTTONS -->
+
+  <button
+    class="submit"
+    id="submitBtn"
+    onclick="submitData()"
+  >
+    ✓ Submit
+  </button>
+
+
+  <button
+    class="view"
+    onclick="showResults()"
+  >
+    📊 সব তথ্য দেখুন
+  </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULT PAGE
+===================================================== -->
+
+<div class="card hidden" id="resultPage">
+
+  <div class="head">
+
+    <h1>মেলান্দহ উপজেলা</h1>
+
+    <h2>টনকী ক্লাস্টার</h2>
+
+    <h3>বিদ্যালয়সমূহের তথ্য</h3>
+
+    <div>
+      তারিখ - <b id="rd"></b>
+    </div>
+
+  </div>
+
+
+  <!-- ACTION BUTTONS -->
+
+  <div class="actions">
+
+    <button
+      class="back"
+      onclick="showForm()"
+    >
+      ← নতুন তথ্য
+    </button>
+
+    <button
+      class="excel"
+      onclick="downloadExcel()"
+    >
+      ⬇ Microsoft Excel (.xlsx)
+    </button>
+
+    <button
+      class="pdf"
+      onclick="downloadPDF()"
+    >
+      ⬇ PDF Download
+    </button>
+
+  </div>
+
+
+  <!-- TABLE -->
+
+  <div class="table-wrap">
+
+    <table id="tbl">
+
+      <thead>
+
+        <tr>
+
+          <th>ক্রমিক নং</th>
+
+          <th>বিদ্যালয়ের নাম</th>
+
+          <th>সময়</th>
+
+          <th>অনুমোদিত পদ</th>
+
+          <th>কর্মরত পদ</th>
+
+          <th>সকাল ৯টা উপস্থিত</th>
+
+          <th>সকাল ৯টা অনুপস্থিত</th>
+
+          <th>নৈমিত্তিক ছুটি</th>
+
+          <th>মাতৃত্ব ছুটি</th>
+
+          <th>চিকিৎসা ছুটি</th>
+
+          <th>বৈদেশিক ছুটি</th>
+
+          <th>হজ্জের ছুটি</th>
+
+          <th>সংযুক্তিতে/ডেপুটেশন</th>
+
+          <th>বিটিপিটি প্রশিক্ষণ</th>
+
+          <th>দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত</th>
+
+          <th>ছবি</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody></tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   GOOGLE APPS SCRIPT WEB APP URL
+===================================================== */
+
+const BACKEND_URL =
+"https://script.google.com/macros/s/AKfycbyp1nNCse7NJzlRJ-aJDQ4gXLR9zeCXR81z-O8XMY3DE3JPYhzth_OiS1dGaDrAfvmDIg/exec";
+
+
+/* =====================================================
+   SCHOOL LIST
+===================================================== */
+
+const S = [
+
+  "হাতিজা স.প্রা.বি.",
+  "হামলা স.প্রা.বি.",
+  "আমবাড়িয়া স.প্রা.বি.",
+  "রোকনাই স.প্রা.বি.",
+  "সুলতানখালি স.প্রা.বি.",
+  "উ.কলাবাধা স.প্রা.বি.",
+  "দ.কলাবাধা স.প্রা.বি.",
+  "টনকী স.প্রা.বি.",
+  "সিতানী স.প্রা.বি.",
+  "কাংগালকুর্শা স.প্রা.বি.",
+  "তারাকান্দি স.প্রা.বি.",
+  "ভালুকা স.প্রা.বি.",
+  "শ্যামপুর স.প্রা.বি.",
+  "হাজী আ.রশিদ স.প্রা.বি.",
+  "আমডাঙ্গা স.প্রা.বি.",
+  "কাজাইকাটা স.প্রা.বি.",
+  "বালুরচর স.প্রা.বি.",
+  "২নং চর স.প্রা.বি.",
+  "তেঘরিয়া স.প্রা.বি.",
+  "চর-বসন্ত স.প্রা.বি.",
+  "সিড়ি-ঘাট স.প্রা.বি.",
+  "চিনিতোলা স.প্রা.বি.",
+  "বল্লভপুর স.প্রা.বি.",
+  "পচাবহলা স.প্রা.বি.",
+  "খুদিয়ার কান্দা স.প্রা.বি.",
+  "টুপকার চর স.প্রা.বি.",
+  "সাদিপাটি স.প্রা.বি.",
+  "পূর্ব সাদিপাটি স.প্রা.বি.",
+  "বালুরচর দ. স.প্রা.বি."
+
+];
+
+
+/* =====================================================
+   EXCEL HEADERS
+===================================================== */
+
+const H = [
+
+  "ক্রমিক নং",
+  "বিদ্যালয়ের নাম",
+  "সময়",
+  "অনুমোদিত পদ",
+  "কর্মরত পদ",
+  "সকাল ৯টা উপস্থিত",
+  "সকাল ৯টা অনুপস্থিত",
+  "নৈমিত্তিক ছুটি",
+  "মাতৃত্ব ছুটি",
+  "চিকিৎসা ছুটি",
+  "বৈদেশিক ছুটি",
+  "হজ্জের ছুটি",
+  "সংযুক্তিতে/ডেপুটেশন",
+  "বিটিপিটি প্রশিক্ষণ",
+  "দীর্ঘদিন অনুপস্থিত/সাময়িক বরখাস্ত",
+  "ছবি"
+
+];
+
+
+/* =====================================================
+   CACHE
+===================================================== */
+
+let cache = null;
+
+
+/* =====================================================
+   BANGLADESH DATE & TIME
+===================================================== */
+
+function getDateTimeBD(){
+
+  const now = new Date();
+
+  const parts =
+    new Intl.DateTimeFormat(
+      "en-GB",
+      {
+        timeZone:"Asia/Dhaka",
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit",
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit",
+        hour12:false
+      }
+    ).formatToParts(now);
+
+  const get = name => {
+
+    const item =
+      parts.find(
+        x => x.type === name
+      );
+
+    return item ? item.value : "";
+
+  };
+
+  return {
+
+    date:
+      get("year") +
+      "-" +
+      get("month") +
+      "-" +
+      get("day"),
+
+    time:
+      get("hour") +
+      ":" +
+      get("minute") +
+      ":" +
+      get("second")
+
+  };
+
+}
+
+
+function iso(){
+
+  return getDateTimeBD().date;
+
+}
+
+
+function bd(v){
+
+  if(!v){
+    return "";
+  }
+
+  const a =
+    v.split("-");
+
+  if(a.length !== 3){
+    return v;
+  }
+
+  return (
+    a[2] +
+    "-" +
+    a[1] +
+    "-" +
+    a[0]
+  );
+
+}
+
+
+/* =====================================================
+   DATE DISPLAY
+===================================================== */
+
+function dates(){
+
+  const d = iso();
+
+  document
+    .getElementById("fd")
+    .textContent = bd(d);
+
+  document
+    .getElementById("rd")
+    .textContent = bd(d);
+
+}
+
+dates();
+
+
+/* =====================================================
+   TWO DIGIT NUMBER
+===================================================== */
+
+function twoDigit(v){
+
+  if(
+    v === null ||
+    v === undefined ||
+    v === ""
+  ){
+
+    return "00";
+
+  }
+
+  const n =
+    parseInt(v,10);
+
+  if(
+    isNaN(n)
+  ){
+
+    return "00";
+
+  }
+
+  return String(n)
+    .padStart(2,"0");
+
+}
+
+
+/* =====================================================
+   PHOTO PREVIEW
+===================================================== */
+
+document
+  .getElementById("photo")
+  .addEventListener(
+    "change",
+    function(){
+
+      const file =
+        this.files[0];
+
+      const img =
+        document.getElementById(
+          "photoPreview"
+        );
+
+      if(!file){
+
+        img.style.display =
+          "none";
+
+        img.src = "";
+
+        return;
+
+      }
+
+      img.src =
+        URL.createObjectURL(file);
+
+      img.style.display =
+        "block";
+
+    }
+  );
+
+
+/* =====================================================
+   FILE TO BASE64
+===================================================== */
+
+function fileToBase64(file){
+
+  return new Promise(
+    (resolve,reject) => {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        () => resolve(
+          reader.result
+        );
+
+      reader.onerror =
+        reject;
+
+      reader.readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showError(message){
+
+  const box =
+    document.getElementById(
+      "errorMsg"
+    );
+
+  box.textContent =
+    message;
+
+  box.style.display =
+    "block";
+
+}
+
+
+function hideError(){
+
+  document
+    .getElementById(
+      "errorMsg"
+    )
+    .style.display =
+    "none";
+
+}
+
+
+/* =====================================================
+   LOAD DATA FROM GOOGLE SHEET
+===================================================== */
+
+async function data(){
+
+  if(cache){
+
+    return cache;
+
+  }
+
+  const res =
+    await fetch(
+
+      BACKEND_URL +
+      "?date=" +
+      encodeURIComponent(
+        iso()
+      ),
+
+      {
+        method:"GET",
+        cache:"no-store",
+        redirect:"follow"
+      }
+
+    );
+
+
+  const text =
+    await res.text();
+
+
+  let json;
+
+  try{
+
+    json =
+      JSON.parse(text);
+
+  }
+
+  catch(e){
+
+    console.log(
+      "Backend response:",
+      text
+    );
+
+    throw new Error(
+      "Backend থেকে বৈধ JSON পাওয়া যায়নি।"
+    );
+
+  }
+
+
+  if(
+    json.success &&
+    Array.isArray(json.data)
+  ){
+
+    cache =
+      json.data;
+
+    return cache;
+
+  }
+
+
+  throw new Error(
+    json.message ||
+    "তথ্য পাওয়া যায়নি।"
+  );
+
+}
+
+
+/* =====================================================
+   SAVE ONE SCHOOL
+===================================================== */
+
+async function saveOne(n){
+
+  const file =
+    document
+      .getElementById("photo")
+      .files[0];
+
+
+  let photo = null;
+
+
+  if(file){
+
+    photo = {
+
+      name:
+        file.name,
+
+      type:
+        file.type,
+
+      data:
+        await fileToBase64(
+          file
+        )
+
+    };
+
+  }
+
+
+  const payload = {
+
+    date:
+      iso(),
+
+    serial:
+      n,
+
+    school:
+      S[n - 1],
+
+    approved:
+      twoDigit(
+        document
+          .getElementById("a1")
+          .value
+      ),
+
+    working:
+      twoDigit(
+        document
+          .getElementById("a2")
+          .value
+      ),
+
+    present:
+      twoDigit(
+        document
+          .getElementById("a3")
+          .value
+      ),
+
+    absent:
+      twoDigit(
+        document
+          .getElementById("a4")
+          .value
+      ),
+
+    casual:
+      twoDigit(
+        document
+          .getElementById("a5")
+          .value
+      ),
+
+    maternity:
+      twoDigit(
+        document
+          .getElementById("a6")
+          .value
+      ),
+
+    medical:
+      twoDigit(
+        document
+          .getElementById("a7")
+          .value
+      ),
+
+    foreign:
+      twoDigit(
+        document
+          .getElementById("a8")
+          .value
+      ),
+
+    hajj:
+      twoDigit(
+        document
+          .getElementById("a9")
+          .value
+      ),
+
+    deputation:
+      twoDigit(
+        document
+          .getElementById("a10")
+          .value
+      ),
+
+    btpt:
+      twoDigit(
+        document
+          .getElementById("a11")
+          .value
+      ),
+
+    absentLong:
+      twoDigit(
+        document
+          .getElementById("a12")
+          .value
+      ),
+
+    photo:
+      photo
+
+  };
+
+
+  const res =
+    await fetch(
+
+      BACKEND_URL,
+
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:
+          JSON.stringify(
+            payload
+          ),
+
+        redirect:"follow"
+
+      }
+
+    );
+
+
+  const text =
+    await res.text();
+
+
+  let json;
+
+
+  try{
+
+    json =
+      JSON.parse(text);
+
+  }
+
+  catch(e){
+
+    console.log(
+      "Backend response:",
+      text
+    );
+
+    throw new Error(
+      "Backend থেকে বৈধ JSON পাওয়া যায়নি।"
+    );
+
+  }
+
+
+  return json;
+
+}
+
+
+/* =====================================================
+   SUBMIT
+===================================================== */
+
+async function submitData(){
+
+  hideError();
+
+
+  const n =
+    Number(
+      document
+        .getElementById("school")
+        .value
+    );
+
+
+  if(!n){
+
+    alert(
+      "বিদ্যালয়ের নাম নির্বাচন করুন।"
+    );
+
+    return;
+
+  }
+
+
+  const btn =
+    document.getElementById(
+      "submitBtn"
+    );
+
+
+  btn.disabled =
+    true;
+
+  btn.textContent =
+    "সংরক্ষণ হচ্ছে...";
+
+
+  try{
+
+    const result =
+      await saveOne(n);
+
+
+    if(
+      !result.success
+    ){
+
+      throw new Error(
+        result.message ||
+        "তথ্য সংরক্ষণ করা যায়নি।"
+      );
+
+    }
+
+
+    /* Clear cache */
+
+    cache = null;
+
+
+    /* Success message */
+
+    document
+      .getElementById(
+        "successMsg"
+      )
+      .style.display =
+      "block";
+
+
+    alert(
+      "তথ্য, সময় ও ছবি সফলভাবে Google Sheet-এ সংরক্ষণ হয়েছে।"
+    );
+
+
+    /* Show result */
+
+    await showResults();
+
+
+  }
+
+  catch(e){
+
+    console.error(e);
+
+    showError(
+      "তথ্য জমা হয়নি: " +
+      e.message
+    );
+
+    alert(
+      "তথ্য জমা হয়নি।\n\n" +
+      e.message
+    );
+
+  }
+
+
+  finally{
+
+    btn.disabled =
+      false;
+
+    btn.textContent =
+      "✓ Submit";
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER TABLE
+===================================================== */
+
+async function render(){
+
+  const tbody =
+    document.querySelector(
+      "#tbl tbody"
+    );
+
+
+  tbody.innerHTML =
+    '<tr>' +
+    '<td colspan="16" class="loading">' +
+    "তথ্য লোড হচ্ছে..." +
+    "</td>" +
+    "</tr>";
+
+
+  try{
+
+    const d =
+      await data();
+
+
+    tbody.innerHTML =
+      "";
+
+
+    if(!d.length){
+
+      tbody.innerHTML =
+        '<tr>' +
+        '<td colspan="16" class="loading">' +
+        "আজকের কোনো তথ্য পাওয়া যায়নি।" +
+        "</td>" +
+        "</tr>";
+
+      return;
+
+    }
+
+
+    d.forEach(
+      r => {
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        let html = "";
+
+
+        html +=
+          "<td>" +
+          escapeHtml(
+            r.no ?? ""
+          ) +
+          "</td>";
+
+
+        html +=
+          "<td>" +
+          escapeHtml(
+            r.school ?? ""
+          ) +
+          "</td>";
+
+
+        html +=
+          "<td>" +
+          escapeHtml(
+            r.time ?? ""
+          ) +
+          "</td>";
+
+
+        for(
+          let i = 1;
+          i <= 12;
+          i++
+        ){
+
+          html +=
+            "<td>" +
+            escapeHtml(
+              r[
+                "v" + i
+              ] ?? ""
+            ) +
+            "</td>";
+
+        }
+
+
+        if(r.photo){
+
+          html +=
+            '<td>' +
+
+            '<a ' +
+            'class="photo-btn" ' +
+            'href="' +
+            escapeAttribute(
+              r.photo
+            ) +
+            '" ' +
+            'target="_blank" ' +
+            'rel="noopener">' +
+
+            '📷 ছবি দেখুন' +
+
+            '</a>' +
+
+            '</td>';
+
+        }
+
+        else{
+
+          html +=
+            "<td>—</td>";
+
+        }
+
+
+        tr.innerHTML =
+          html;
+
+
+        tbody.appendChild(
+          tr
+        );
+
+      }
+    );
+
+  }
+
+  catch(e){
+
+    tbody.innerHTML =
+      '<tr>' +
+      '<td colspan="16">' +
+      "তথ্য লোড করা যায়নি।" +
+      "</td>" +
+      "</tr>";
+
+    throw e;
+
+  }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+  return String(value)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+function escapeAttribute(value){
+
+  return String(value)
+    .replace(
+      /"/g,
+      "&quot;"
+    );
+
+}
+
+
+/* =====================================================
+   SHOW RESULTS
+===================================================== */
+
+async function showResults(){
+
+  dates();
+
+  hideError();
+
+
+  try{
+
+    await render();
+
+
+    document
+      .getElementById(
+        "formPage"
+      )
+      .classList
+      .add("hidden");
+
+
+    document
+      .getElementById(
+        "resultPage"
+      )
+      .classList
+      .remove("hidden");
+
+
+  }
+
+  catch(e){
+
+    alert(
+      e.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SHOW FORM
+===================================================== */
+
+function showForm(){
+
+  dates();
+
+
+  document
+    .getElementById(
+      "resultPage"
+    )
+    .classList
+    .add("hidden");
+
+
+  document
+    .getElementById(
+      "formPage"
+    )
+    .classList
+    .remove("hidden");
+
+}
+
+
+/* =====================================================
+   EXCEL DOWNLOAD
+===================================================== */
+
+async function downloadExcel(){
+
+  try{
+
+    const d =
+      await data();
+
+
+    if(
+      !window.XLSX
+    ){
+
+      alert(
+        "Excel library লোড হয়নি। Internet connection পরীক্ষা করুন।"
+      );
+
+      return;
+
+    }
+
+
+    const rows = [];
+
+
+    /* Title */
+
+    rows.push([
+      "মেলান্দহ উপজেলা"
+    ]);
+
+    rows.push([
+      "টনকী ক্লাস্টার"
+    ]);
+
+    rows.push([
+      "বিদ্যালয়সমূহের তথ্য"
+    ]);
+
+    rows.push([
+      "তারিখ - " +
+      bd(iso())
+    ]);
+
+    rows.push([]);
+
+
+    /* Header */
+
+    rows.push(
+      H
+    );
+
+
+    /* Data */
+
+    d.forEach(
+      r => {
+
+        rows.push([
+
+          r.no || "",
+
+          r.school || "",
+
+          r.time || "",
+
+          r.v1 || "00",
+
+          r.v2 || "00",
+
+          r.v3 || "00",
+
+          r.v4 || "00",
+
+          r.v5 || "00",
+
+          r.v6 || "00",
+
+          r.v7 || "00",
+
+          r.v8 || "00",
+
+          r.v9 || "00",
+
+          r.v10 || "00",
+
+          r.v11 || "00",
+
+          r.v12 || "00",
+
+          r.photo
+            ? "ছবি দেখুন"
+            : "—"
+
+        ]);
+
+      }
+    );
+
+
+    /* Create worksheet */
+
+    const ws =
+      XLSX.utils.aoa_to_sheet(
+        rows
+      );
+
+
+    /* Column width */
+
+    ws["!cols"] = [
+
+      {wch:10},
+      {wch:25},
+      {wch:12},
+      {wch:15},
+      {wch:15},
+      {wch:18},
+      {wch:18},
+      {wch:16},
+      {wch:16},
+      {wch:16},
+      {wch:16},
+      {wch:14},
+      {wch:20},
+      {wch:20},
+      {wch:30},
+      {wch:15}
+
+    ];
+
+
+    /* Workbook */
+
+    const wb =
+      XLSX.utils.book_new();
+
+
+    XLSX.utils.book_append_sheet(
+      wb,
+      ws,
+      "বিদ্যালয় তথ্য"
+    );
+
+
+    /* File name */
+
+    const filename =
+      "টনকী_ক্লাস্টার_" +
+      iso() +
+      ".xlsx";
+
+
+    XLSX.writeFile(
+      wb,
+      filename
+    );
+
+
+  }
+
+  catch(e){
+
+    console.error(e);
+
+    alert(
+      "Excel তৈরি করা যায়নি।\n\n" +
+      e.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PDF DOWNLOAD
+===================================================== */
+
+async function downloadPDF(){
+
+  try{
+
+    await render();
+
+
+    /*
+      Browser print dialog open হবে।
+      এখান থেকে:
+      Save as PDF নির্বাচন করুন।
+    */
+
+    window.print();
+
+  }
+
+  catch(e){
+
+    alert(
+      "PDF তৈরি করা যায়নি।\n\n" +
+      e.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SCHOOL CHANGE
+===================================================== */
+
+document
+  .getElementById("school")
+  .addEventListener(
+    "change",
+    function(){
+
+      document
+        .getElementById(
+          "successMsg"
+        )
+        .style.display =
+        "none";
+
+      hideError();
+
+    }
+  );
+
+
+/* =====================================================
+   PREVENT ENTER SUBMIT
+===================================================== */
+
+document
+  .addEventListener(
+    "keydown",
+    function(e){
+
+      if(
+        e.key === "Enter" &&
+        e.target.tagName === "INPUT"
+      ){
+
+        e.preventDefault();
+
+      }
+
+    }
+  );
+
+
+</script>
+
+</body>
+
+</html>
